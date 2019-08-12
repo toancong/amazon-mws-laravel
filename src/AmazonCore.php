@@ -593,8 +593,12 @@ abstract class AmazonCore
     {
         if (!$time) {
             $time = time();
-        } else {
+        } else if (is_numeric($time)) {
+            $time = (int)$time;
+        } else if (is_string($time)) {
             $time = strtotime($time);
+        } else {
+            throw new Exception('Invalid time input given');
         }
 
         return date(DateTime::ISO8601, $time - 120);
