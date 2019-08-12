@@ -7,6 +7,15 @@ A Laravel 5 package to connect to Amazon's Merchant Web Services (MWS).
 
 This is __NOT__ for Amazon Web Services (AWS) - Cloud Computing Services.
 
+This package was forked from:
+https://github.com/keithbrink/amazon-mws-laravel
+with fix some bugs and add more about:
+- setConfig
+- AmazonShipment
+- AmazonTransport
+- AmazonTransportDocument
+- OrderXXX
+
 ## Installation
 
 Install the package using `composer require keithbrink/amazon-mws-laravel`.
@@ -89,6 +98,9 @@ function sendInventoryFeed($feed) {
 
 ## Credits
 This package was forked from:
+https://github.com/keithbrink/amazon-mws-laravel
+
+which was forked from:
 https://github.com/sonnenglas/amazon-mws-laravel
 
 which was forked from:

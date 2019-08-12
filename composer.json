@@ -1,12 +1,12 @@
 {
-    "name": "keithbrink/amazon-mws-laravel",
+    "name": "toancong/amazon-mws-laravel",
     "description": "Use Amazon's MWS web services with Laravel 5.x. Based on creacoon/amazon-mws-laravel package and modified to make it compatible with latest Laravel releases (+ bugfixes).",
     "license": "Apache-2.0",
     "keywords": ["API", "Amazon", "PHP", "MWS", "Laravel"],
     "authors": [
         {
-            "name": "Keith Brink",
-            "email": "keith.brink@gmail.com"
+            "name": "Toan Pham Cong",
+            "email": "toancong1920@gmail.com"
         }
     ],
     "require": {
