@@ -56,8 +56,7 @@ class AmazonOrderList extends AmazonOrderCore implements Iterator
         parent::__construct($s, $mock, $m);
         include $this->env;
 
-        $config_options = $this->getOptions();
-        $this->options['MarketplaceId.Id.1'] = $config_options['MarketplaceId'];
+        $this->resetMarketplaceFilter();
 
         if (isset($THROTTLE_LIMIT_ORDERLIST)) {
             $this->throttleLimit = $THROTTLE_LIMIT_ORDERLIST;
@@ -559,5 +558,11 @@ class AmazonOrderList extends AmazonOrderCore implements Iterator
     public function valid()
     {
         return isset($this->orderList[$this->i]);
+    }
+
+    public function setConfig($config)
+    {
+        parent::setConfig($config);
+        $this->resetMarketplaceFilter();
     }
 }

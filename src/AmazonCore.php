@@ -195,6 +195,38 @@ abstract class AmazonCore
     }
 
     /**
+     * Removes marketplace ID options and sets the current store's marketplace instead.
+     *
+     * Use this in case you change your mind and want to remove the Marketplace ID
+     * parameters you previously set.
+     * @throws Exception if config file is missing
+     */
+    public function resetMarketplaceFilter(){
+        foreach($this->options as $op=>$junk){
+            if(preg_match("#MarketplaceId#",$op)){
+                $marketplaceId = $this->options[$op];
+                unset($this->options[$op]);
+            }
+        }
+        //reset to store's default marketplace
+        // if (file_exists($this->config)){
+        //     include($this->config);
+        // } else {
+        //     throw new Exception('Config file does not exist!');
+        // }
+        // if(isset($store[$this->storeName]) && array_key_exists('marketplaceId', $store[$this->storeName])){
+        //     $this->options['MarketplaceId.Id.1'] = $store[$this->storeName]['marketplaceId'];
+        // } else {
+        //     $this->log("Marketplace ID is missing",'Urgent');
+        // }
+        if (isset($this->config['marketplaceId'])) {
+            $this->options['MarketplaceId.Id.1'] = $this->config['marketplaceId'];
+        } else {
+            $this->log("Marketplace ID is missing",'Urgent');
+        }
+    }
+
+    /**
      * Fetches the given mock file, or attempts to.
      *
      * This method is only called when Mock Mode is enabled. This is where
@@ -471,6 +503,7 @@ abstract class AmazonCore
             $this->muteLog = $config['muteLog'];
         }
 
+        $this->config = $config;
         return $valid;
     }
 
