@@ -18,7 +18,7 @@ with fix some bugs and add more about:
 
 ## Installation
 
-Install the package using `composer require keithbrink/amazon-mws-laravel`.
+Install the package using `composer require toancong/amazon-mws-laravel`.
 
 For Laravel 5.5 and up, the package will be automatically discovered. For other versions, you can add `KeithBrink\AmazonMws\MwsServiceProvider` to your `config/app.php` file.
 
