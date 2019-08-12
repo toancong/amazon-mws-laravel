@@ -211,6 +211,22 @@ class AmazonShipment extends AmazonInboundCore
     }
 
     /**
+     * Sets the intended box contents source for the shipment. (Optional).
+     *
+     * @param string $p <p>"NONE", "FEED", or "2D_BARCODE"</p>
+     *
+     * @return bool <b>FALSE</b> if improper input
+     */
+    public function setIntendedBoxContentsSource($str)
+    {
+        if (in_array($str, ['NONE', 'FEED', '2D_BARCODE'])) {
+            $this->options['InboundShipmentHeader.IntendedBoxContentsSource'] = $str;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * Sets the items. (Required).
      *
      * This method sets the Fulfillment Order ID to be sent in the next request.
