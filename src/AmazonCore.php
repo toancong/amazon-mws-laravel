@@ -135,9 +135,10 @@ abstract class AmazonCore
      *                             from the list to use as a response. See <i>setMock</i> for more information.</p>
      * @param string       $config [optional] <p>An alternate config file to set. Used for testing.</p>
      */
-    protected function __construct($s, $mock = false, $m = null)
+    protected function __construct($s, $mock = false, $m = null, $config = null)
     {
         $this->setStore($s);
+        $this->setConfig($config);
         $this->setMock($mock, $m);
 
         $this->env = __DIR__.'/environment.php';
@@ -463,9 +464,12 @@ abstract class AmazonCore
         }
     }
 
-    public function validateAndSetConfig($config)
+    public function validateAndSetConfig($config = null)
     {
         $valid = true;
+        if (empty($config)) {
+            return $valid; // assume no config and use store config instead
+        }
         if (array_key_exists('merchantId', $config) && $config['merchantId']) {
             $this->options['SellerId'] = $config['merchantId'];
         } else {
