@@ -93,6 +93,7 @@ class AmazonProductInfo extends AmazonProductsCore
                 unset($this->options[$op]);
             }
         }
+        unset($this->options['SellerSKU']);
     }
 
     /**
@@ -140,6 +141,7 @@ class AmazonProductInfo extends AmazonProductsCore
                 unset($this->options[$op]);
             }
         }
+        unset($this->options['ASIN']);
     }
 
     /**
@@ -440,10 +442,12 @@ class AmazonProductInfo extends AmazonProductsCore
         unset($this->options['ItemCondition']);
         if (array_key_exists('SellerSKUList.SellerSKU.1', $this->options)) {
             $this->options['Action'] = 'GetProductCategoriesForSKU';
+            $this->options['SellerSKU'] = $this->options['SellerSKUList.SellerSKU.1'];
             $this->resetASINs();
         } else {
             if (array_key_exists('ASINList.ASIN.1', $this->options)) {
                 $this->options['Action'] = 'GetProductCategoriesForASIN';
+                $this->options['ASIN'] = $this->options['ASINList.ASIN.1'];
                 $this->resetSKUs();
             }
         }
